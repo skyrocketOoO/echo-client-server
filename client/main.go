@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"os"
 	"strings"
 )
 
@@ -11,8 +12,11 @@ func main() {
 	// URL of the echo server
 	url := "http://10.7.99.33:8663"
 
-	// Data to send in the request
-	data := "Hello, server!"
+	// Get command-line arguments
+	args := os.Args[1:]
+
+	// Join arguments into a single string separated by spaces
+	data := strings.Join(args, " ")
 
 	// Create a new HTTP POST request
 	req, err := http.NewRequest("POST", url, strings.NewReader(data))
